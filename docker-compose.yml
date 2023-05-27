@@ -17,16 +17,16 @@ services:
     networks:
       - orchestrator-net
 
-  # monit-docker:
-  #   image: decryptus/monit-docker:latest
-  #   container_name: monit-docker
-  #   environment:
-  #     MONIT_DOCKER_CRONS: |
-  #       */2 * * * * monit-docker --name 'orchestrator' monit --cmd-if 'mem_percent > 85 ? restart'
-  #       */2 * * * * monit-docker monit --cmd-if 'status not in (pause,running) ? restart'
-  #       */2 * * * * monit-docker monit --rsc pid
-  #   volumes:
-  #     - /var/run:/var/run:rw
-  #   restart: unless-stopped
-  #   networks:
-  #     - orchestrator-net
+  monit-docker:
+    image: decryptus/monit-docker:latest
+    container_name: monit-docker
+    environment:
+      MONIT_DOCKER_CRONS: |
+        */2 * * * * monit-docker --name 'orchestrator' monit --cmd-if 'mem_percent > 85 ? restart'
+        */2 * * * * monit-docker monit --cmd-if 'status not in (pause,running) ? restart'
+        */2 * * * * monit-docker monit --rsc pid
+    volumes:
+      - /var/run:/var/run:rw
+    restart: unless-stopped
+    networks:
+      - orchestrator-net
