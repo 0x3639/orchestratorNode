@@ -4,33 +4,63 @@
 
 ### Install Docker 
 
-Download installation script
-`curl -fsSL https://get.docker.com -o get-docker.sh`
+Download the Docker installation script
+```
+curl -fsSL https://get.docker.com -o get-docker.sh
+```
 
 Install Docker
-`sudo sh get-docker.sh`
+```
+sudo sh get-docker.sh
+```
 
 ### Setup Orchestrator
 
-Clone Repo
-`git clone --recurse-submodules https://github.com/0x3639/orchestratorNode.git`
-`cd orchestratorNode`
+Clone repo
+```
+git clone --recurse-submodules https://github.com/0x3639/orchestratorNode.git
+cd orchestratorNode
+```
 
-Build Images and Container
-`docker compose up`
+
+Build images and container
+```
+sudo docker compose up
+```
 
 Service will build the images but fail to run.  It will create `data` folder under the `orchestratorNode` folder.  Move into it.
 
-`cd data`
+```
+cd data
+```
 
 update `config.json` with correct values
 - Update Ethereum Node
 - Undate Zenon Node
 - Update ProducerSecret
 
-create a `producer` file under the `data` directory. `touch producer` and paste the producer value into this file.
+```
+sudo nano config.json
+```
 
-start docker container as a background service `docker compose up -d`
+You can find the contents of the `producer` file on the pillar.  Run this command (on the pillar) to get the `producer` contents. Copy the contents of the output.
+```
+sudo cat /root/.znn/wallet/producer
+```
 
-make sure to open port `tcp 55055` on the host firewall.  
+Create a `producer` file under the `data` directory. Paste the contents of the step above into this file.
+```
+sudo nano producer
+```
+ 
+Start the Docker container as a background service 
+```
+docker compose up -d
+```
+You can follow the log files of the orchestrator by typing this command
+```
+docker compose logs --follow
+```
+
+Make sure to open port `tcp 55055` on the host firewall.  
 
