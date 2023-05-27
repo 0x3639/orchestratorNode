@@ -13,7 +13,7 @@ Install Docker
 ### Setup Orchestrator
 
 Clone Repo
-`git clone https://github.com/0x3639/orchestratorNode.git`
+`git clone --recurse-submodules https://github.com/0x3639/orchestratorNode.git`
 `cd orchestratorNode`
 
 Build Images and Container
