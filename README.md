@@ -55,11 +55,11 @@ sudo nano producer
  
 Start the Docker container as a background service 
 ```
-docker compose up -d
+sudo docker compose up -d
 ```
 You can follow the log files of the orchestrator by typing this command
 ```
-docker compose logs --follow
+sudo docker compose logs --follow
 ```
 
 Make sure to open port `tcp 55055` on the host firewall.  
